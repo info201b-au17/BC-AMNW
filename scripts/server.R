@@ -2,6 +2,8 @@ library(shiny)
 library(rsconnect)
 library(dplyr)
 library(ggplot2)
+library(stringr)
+library(scales)
 
 attach(data)
 
@@ -20,9 +22,12 @@ function(input, output, session) {
   #  dataSet <- filterData[, c("Major", "Total")]
     
     plot1 <- ggplot(new.data, aes(x=new.data[,2], y=new.data[,type])) + 
-      geom_histogram(stat = "identity", fill = "Red") + labs(title = input$Categories, y = input$Type, x = "")
+      geom_histogram(stat = "identity", fill = "Red") + labs(title = input$Categories, y = input$Type, x = input$Categories)+
+      scale_x_discrete(labels = wrap_format(0.5))
     
     plot(plot1)
   })
-  
 }
+
+
+# width=0.1, position = position_dodge(width=10))
