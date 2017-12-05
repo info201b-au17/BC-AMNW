@@ -16,4 +16,5 @@ MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Re
                     "Arts" = "Arts",
                     "Business" = "Business")
 
-selectGraph <- c("Unemployment" = "Unemployment", "Average Pay" = "Average Pay")
+selectGraph <- c("Unemployment" = "Unemployment_rate", 
+                 "Average Pay" = "Median")
