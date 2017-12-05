@@ -11,8 +11,16 @@ category.data <- function(category) {
 #function for finding average salary or unemployment rate of a given category of majors
 #returns dataframe with category and average pay or unemployment rate
 major.category <- function(category, data.type) {
-  category_data <- category.data(category)
-  
+  category.data <- category.data(category)
+  if(data.type == "average pay") {
+    data.type <- mean(category.data$Median)
+    category.summary <- data.frame(category = rep("", 1), average.pay = rep(NA, 1), stringsAsFactors = FALSE)
+  } else {
+    data.type <- mean(category.data$Unemployment_rate)
+    category.summary <- data.frame(category = rep("", 1), unemployment.rate = rep(NA, 1), stringsAsFactors = FALSE)
+  }
+  category.summary[1, ] <- list(category, data.type)
+  return(category.summary)
 }
 
 
