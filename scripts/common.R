@@ -1,12 +1,14 @@
 library(shiny)
 library(dplyr)
-data <- read.csv("data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
+data <- read.csv("../data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
 
-
+#filters data by category
 category.data <- function(category) {
   category_data <- filter(data, Major_category == category)
   return(category_data)
 }
+
+
 
 # Takes in a vector of major names, returns a data frame containing just those majors.
 filterByMajorName <- function(data, majors) {
@@ -52,6 +54,8 @@ graphCategory <- function(data, category, categoryLabel) {
 17#Business
 
 
+
+#function that creates a data frame of all major categories and its respective average pay and average unemployment rate.
 agg.categories <- function() {
 categories <- c("Agriculture & Natural Resources", "Biology & Life Science","Engineering", "Humanities & Liberal Arts",
                 "Communications & Journalism", "Computers & Mathematics",
@@ -68,6 +72,7 @@ for( i in 1:16) {
   mean.unemployment <- mean(c.data$Unemployment_rate)
   all.categories[i, ] <- list(category, mean.pay, mean.unemployment) 
 }
+return(all.categories)
 }
 
 
