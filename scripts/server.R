@@ -3,19 +3,19 @@ library(rsconnect)
 library(dplyr)
 library(ggplot2)
 
-attach(data)
+data <- read.csv("../data/college-majors/all-ages.csv")
 
 function(input, output, session) {
   
   output$plot1 <- renderPlot({
-    
-  new.data <- category.data(input$Categories)
+  
+  new.data <- data(input$Categories)
     if(input$Type == "Average Pay") {
       type <- "Median"
     } else {
       type <- "Unemployment_rate"
     }
-    
+  
    # filterData <- data %>% filter(Major_category == input$Categories)
   #  dataSet <- filterData[, c("Major", "Total")]
     

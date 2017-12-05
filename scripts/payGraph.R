@@ -16,7 +16,6 @@ GetPayByMajors <- function(majors) {
   return(graphMajorsPay(data, majors))
 }
 
-
 # Stub data to test with
 listOfMajors <- c("FOOD SCIENCE", "MUSIC", "ECOLOGY", "INFORMATION SCIENCES")
 as.list(listOfMajors)
