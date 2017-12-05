@@ -1,7 +1,7 @@
 
 library(dplyr)
 library(ggplot2)
-data <- read.csv("./data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
+data <- read.csv("../data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
 
 selectGraph <- c("Unemployment" = "Unemployment", "Average Pay" = "Average Pay")
 
