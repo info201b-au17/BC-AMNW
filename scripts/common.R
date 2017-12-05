@@ -1,4 +1,4 @@
-
+library(shiny)
 library(dplyr)
 data <- read.csv("data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
 
@@ -6,6 +6,31 @@ data <- read.csv("data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
 category.data <- function(category) {
   category_data <- filter(data, Major_category == category)
   return(category_data)
+}
+
+# Takes in a vector of major names, returns a data frame containing just those majors.
+filterByMajorName <- function(data, majors) {
+  filteredData <- data.frame()
+  for(major in majors) {
+    filteredData <- rbind(filteredData, data[which(data$Major == major),])
+  }
+  return(filteredData)
+}
+
+# Takes in a dataframe, category AS STRING, and category label (y-axis label) AS STRING, returns a bar graph of Major vs. Category
+# Example call: graphCategory(data, "Median", "Median Pay)
+graphCategory <- function(data, category, categoryLabel) {
+  data["Unemployment_rate"] <- data["Unemployment_rate"] * 100
+  result <- ggplot(data, aes(Major, get(category))) + geom_col(aes(fill = Major_category))
+  result <- result + labs(x = "Major", y = categoryLabel, fill = "Category") + scale_x_discrete( labels = 
+                                                                                                   function(labels) {
+                                                                                                     fixedLabels <- c() 
+                                                                                                     for (l in 1:length(labels)) {
+                                                                                                       fixedLabels <- c(fixedLabels, paste0(ifelse(l %% 2 == 0, '', '\n'), labels[l]))
+                                                                                                     } 
+                                                                                                     return( fixedLabels )
+                                                                                                   })
+  return(result)
 }
 
 1#categories 
