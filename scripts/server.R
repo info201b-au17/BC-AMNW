@@ -20,7 +20,7 @@ function(input, output, session) {
   #  dataSet <- filterData[, c("Major", "Total")]
     
     plot1 <- ggplot(new.data, aes(x=new.data[,2], y=new.data[,type])) + 
-      geom_histogram(stat = "identity", fill = "Red") + labs(title = "", y = input$Type, x = "")
+      geom_histogram(stat = "identity", fill = "Red") + labs(title = input$Categories, y = input$Type, x = "")
     
     plot(plot1)
   })
