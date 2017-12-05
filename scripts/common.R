@@ -36,14 +36,23 @@ filterByMajorName <- function(data, majors) {
 }
 
 # Takes in a dataframe and a list of majors AS STRING, filters data by majors, and returns a bar graph of Median Income vs. Majors
-graphMajors <- function(data, majors) {
-  print("before")
+# Example list: list <- c("Information sciences", "ecology", "music", "food science", "forestry", "mechanical engineering")
+#                         as.list(list)
+# Example Call: graphMajorsPay(data, list)
+graphMajorsPay <- function(data, majors) {
+
   getFilteredData <- filterByMajorName(data, majors)
-  print("after")
-  print(getFilteredData)
-  plotGraph <- ggplot(getFilteredData, aes(Major, get(median))) + geom_col(aes(fill = Major))
   
-  return (plotGraph)
+  graph <- ggplot(getFilteredData, aes(x=getFilteredData[, "Major"], y=getFilteredData[, "Median"])) + geom_col(aes(fill = Median))
+  graph <- graph + labs(title = "Median Pay of Majors", y = "Median", x = "Majors") + scale_x_discrete( labels = 
+                                                                                                                        function(labels) {
+                                                                                                                          fixedLabels <- c() 
+                                                                                                                          for (l in 1:length(labels)) {
+                                                                                                                            fixedLabels <- c(fixedLabels, paste0(ifelse(l %% 2 == 0, '', '\n'), labels[l]))
+                                                                                                                          } 
+                                                                                                                          return( fixedLabels )
+                                                                                                                        })
+  return(graph)
 }
 
 # Takes in a dataframe, category AS STRING, and category label (y-axis label) AS STRING, returns a bar graph of Major vs. Category
