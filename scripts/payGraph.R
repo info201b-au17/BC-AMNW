@@ -4,20 +4,22 @@ library(shiny)
 # install.packages("dplyr")
 library(dplyr)
 
-install.packages("ggplot2")
+# install.packages("ggplot2")
 library(ggplot2)
 
-GetGraphyByMajors <- function(list) {
-  getList <- list
-  
+source("scripts/common.R")
+
+allData <- read.csv("./all-ages.csv")
+
+# This function takes in a list of majors that a user may be interested in
+GetPayByMajors <- function(majors) {
+  return(filterByMajorName(data, majors) %>% graphMajors("./data/college-majors/all-ages.csv", "Median"))
 }
 
+
+
 listOfMajors <- c("FOOD SCIENCE", "MUSIC", "ECOLOGY", "INFORMATION SCIENCES")
-readData <- read.csv("./all-ages.csv", header = TRUE)
-
-filterData <- readData[readData$Major %in% listOfMajors, ]
-
-moneyData <- filterData[, c("Major", "Median")]
+as.list(listOfMajors)
 
 
 

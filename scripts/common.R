@@ -1,6 +1,7 @@
 
 library(dplyr)
-data <- read.csv("../data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
+library(ggplot2)
+data <- read.csv("./data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
 
 selectGraph <- c("Unemployment" = "Unemployment", "Average Pay" = "Average Pay")
 
@@ -56,8 +57,19 @@ filterByMajorName <- function(data, majors) {
   return(filteredData)
 }
 
+# Takes in a dataframe and a list of majors AS STRING, filters data by majors, and returns a bar graph of Median Income vs. Majors
+graphMajors <- function(data, majors) {
+  print("before")
+  getFilteredData <- filterByMajorName(data, majors)
+  print("after")
+  print(getFilteredData)
+  plotGraph <- ggplot(getFilteredData, aes(Major, get(median))) + geom_col(aes(fill = Major))
+  
+  return (plotGraph)
+}
+
 # Takes in a dataframe, category AS STRING, and category label (y-axis label) AS STRING, returns a bar graph of Major vs. Category
-# Example call: graphCategory(data, "Median", "Median Pay)
+# Example call: graphCategory(data, "Median", Median Pay)
 graphCategory <- function(data, category, categoryLabel) {
   data["Unemployment_rate"] <- data["Unemployment_rate"] * 100
   result <- ggplot(data, aes(Major, get(category))) + geom_col(aes(fill = Major_category))
