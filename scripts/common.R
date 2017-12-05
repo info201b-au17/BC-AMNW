@@ -1,26 +1,27 @@
-
 library(dplyr)
 library(ggplot2)
 data <- read.csv("../data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
 
-selectGraph <- c("Unemployment" = "Unemployment", "Average Pay" = "Average Pay")
 
 MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Resources",
+                   "Arts" = "Arts",
                    "Biology & Life Science" = "Biology & Life Science",
-                   "Engineering" = "Engineering",
-                   "Humanities & Liberal Arts" = "Humanities & Liberal Arts",
+                   "Business" = "Business",
                    "Communications & Journalism" = "Communications & Journalism",
                    "Computers & Mathematics" = "Computers & Mathematics",
-                   "Industrial Arts & Consumer Services" = "Industrial Arts & Consumer Services",
                    "Education" = "Education",
-                   "Law & Public Policy" = "Law & Public Policy",
-                   "Interdisciplinary" = "Interdisciplinary",
+                   "Engineering" = "Engineering",
                    "Health" = "Health",
+                   "Humanities & Liberal Arts" = "Humanities & Liberal Arts",
+                   "Industrial Arts & Consumer Services" = "Industrial Arts & Consumer Services",
+                   "Interdisciplinary" = "Interdisciplinary",
+                   "Law & Public Policy" = "Law & Public Policy",
                    "Social Science" = "Social Science",
                    "Physical Sciences" = "Physical Sciences",
-                   "Psychology & Social Work" = "Psychology & Social Work",
-                   "Arts" = "Arts",
-                   "Business" = "Business")
+                   "Psychology & Social Work" = "Psychology & Social Work")
+
+selectGraph <- c("Average Pay" = "Median",
+                 "Unemployment Rate" = "Unemployment_rate")
 
 
 
@@ -58,14 +59,23 @@ filterByMajorName <- function(data, majors) {
 }
 
 # Takes in a dataframe and a list of majors AS STRING, filters data by majors, and returns a bar graph of Median Income vs. Majors
-graphMajors <- function(data, majors) {
-  print("before")
+# Example list: list <- c("Information sciences", "ecology", "music", "food science", "forestry", "mechanical engineering")
+#                         as.list(list)
+# Example Call: graphMajorsPay(data, list)
+graphMajorsPay <- function(data, majors) {
+
   getFilteredData <- filterByMajorName(data, majors)
-  print("after")
-  print(getFilteredData)
-  plotGraph <- ggplot(getFilteredData, aes(Major, get(median))) + geom_col(aes(fill = Major))
   
-  return (plotGraph)
+  graph <- ggplot(getFilteredData, aes(x=getFilteredData[, "Major"], y=getFilteredData[, "Median"])) + geom_col(aes(fill = Median))
+  graph <- graph + labs(title = "Median Pay of Majors", y = "Median", x = "Majors") + scale_x_discrete( labels = 
+                                                                                                                        function(labels) {
+                                                                                                                          fixedLabels <- c() 
+                                                                                                                          for (l in 1:length(labels)) {
+                                                                                                                            fixedLabels <- c(fixedLabels, paste0(ifelse(l %% 2 == 0, '', '\n'), labels[l]))
+                                                                                                                          } 
+                                                                                                                          return( fixedLabels )
+                                                                                                                        })
+  return(graph)
 }
 
 # Takes in a dataframe, category AS STRING, and category label (y-axis label) AS STRING, returns a bar graph of Major vs. Category
