@@ -1,4 +1,4 @@
-library(shiny)
+
 library(dplyr)
 data <- read.csv("../data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
 
