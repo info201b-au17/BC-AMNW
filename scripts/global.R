@@ -16,4 +16,4 @@ MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Re
                     "Arts" = "Arts",
                     "Business" = "Business")
 
-selectGraph <- "place graphs here"
+selectGraph <- c("Unemployment" = "Unemployment", "Average Pay" = "Average Pay")

@@ -1,7 +1,29 @@
 
 library(dplyr)
 library(ggplot2)
-data <- read.csv("./data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
+data <- read.csv("../data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
+
+selectGraph <- c("Unemployment" = "Unemployment", "Average Pay" = "Average Pay")
+
+MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Resources",
+                   "Biology & Life Science" = "Biology & Life Science",
+                   "Engineering" = "Engineering",
+                   "Humanities & Liberal Arts" = "Humanities & Liberal Arts",
+                   "Communications & Journalism" = "Communications & Journalism",
+                   "Computers & Mathematics" = "Computers & Mathematics",
+                   "Industrial Arts & Consumer Services" = "Industrial Arts & Consumer Services",
+                   "Education" = "Education",
+                   "Law & Public Policy" = "Law & Public Policy",
+                   "Interdisciplinary" = "Interdisciplinary",
+                   "Health" = "Health",
+                   "Social Science" = "Social Science",
+                   "Physical Sciences" = "Physical Sciences",
+                   "Psychology & Social Work" = "Psychology & Social Work",
+                   "Arts" = "Arts",
+                   "Business" = "Business")
+
+
+
 
 #filters data by category
 category.data <- function(category) {
@@ -13,7 +35,7 @@ category.data <- function(category) {
 #returns dataframe with category and average pay or unemployment rate
 major.category <- function(category, data.type) {
   category.data <- category.data(category)
-  if(data.type == "average pay") {
+  if(data.type == "Average Pay") {
     data.type <- mean(category.data$Median)
     category.summary <- data.frame(category = rep("", 1), average.pay = rep(NA, 1), stringsAsFactors = FALSE)
   } else {
@@ -89,19 +111,13 @@ graphCategory <- function(data, category, categoryLabel) {
 16#Arts
 17#Business
 
-categories <- c("Agriculture & Natural Resources", "Biology & Life Science","Engineering", "Humanities & Liberal Arts",
-                "Communications & Journalism", "Computers & Mathematics",
-                "Industrial Arts & Consumer Services", "Education","Law & Public Policy", 
-                "Interdisciplinary","Health","Social Science","Physical Sciences","Psychology & Social Work",
-                "Arts","Business")
-
 
 #function that creates a data frame of all major categories and its respective average pay and average unemployment rate.
 agg.categories <- function() {
 all.categories <- data.frame(category = rep(NA,16), average.pay = rep(NA,16), average.unemployment.rate =rep("",16),
                              stringsAsFactors = FALSE)
 for( i in 1:16) {
-  category <- categories[i]
+  category <- MajorCategory[i]
   c.data <- category.data(category)
   mean.pay <- mean(c.data$Median)
   mean.unemployment <- mean(c.data$Unemployment_rate)
