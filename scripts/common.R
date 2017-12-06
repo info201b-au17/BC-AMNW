@@ -79,27 +79,12 @@ filterByMajorName <- function(data, majors) {
 graphCategory <- function(data, category, categoryLabel) {
   data["Unemployment_rate"] <- data["Unemployment_rate"] * 100
   result <- ggplot(data, aes(Major, get(category))) + geom_col(aes(fill = Major_category))
-  result <- result + labs(x = "Major", y = categoryLabel, fill = "Category") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+  result <- result + labs(x = "Major", y = categoryLabel, fill = "Category") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 15),
+                                                                                     axis.text.y = element_text(size = 15), plot.margin = unit(c(1,1,1,5), "cm"),
+                                                                                     axis.title.x = element_text(size = 20),
+                                                                                     axis.title.y = element_text(size = 20))
   return(result)
 }
-
-1#categories 
-2#Agriculture & Natural Resources
-3#Biology & Life Science
-4#Engineering
-5#Humanities & Liberal Arts
-6#Communications & Journalism
-7#Computers & Mathematics
-8#Industrial Arts & Consumer Services
-9#Education
-10#Law & Public Policy 
-11#Interdisciplinary
-12#Health
-13#Social Science
-14#Physical Sciences
-15#Psychology & Social Work
-16#Arts
-17#Business
 
 
 #function that creates a data frame of all major categories and its respective average pay and average unemployment rate.

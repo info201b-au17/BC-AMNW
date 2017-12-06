@@ -14,13 +14,13 @@ navbarPage("Data on Majors!",
                                     choices = selectGraph)
                       ),
                       mainPanel(
-                        plotOutput("plot1")
+                        plotOutput("plot1", height = 700)
                       )
                     ),
                     
                     tags$hr(),
                     
-                    includeCSS("styles.css"),
+                    
 
                     tags$h1("The Inner Workings"),
                     tags$p("In this graph, the user is allowed to explore the fields of study. The user is then able
@@ -39,19 +39,19 @@ navbarPage("Data on Majors!",
                                          choices = MajorCategory, selected = "Agriculture & Natural Resources")
                     ),
                     mainPanel(
-                      plotOutput("plot2")
+                      plotOutput("plot2", height = 700)
                     ),
                     fluidPage(
                       titlePanel("Choose your Majors"),
                       fluidRow(
-                        column(3, wellPanel(
+                        
                           # This outputs the dynamic UI component
                           uiOutput("boxes")
-                        ))
+                        
                       )
                     ),
                     tags$hr(),
-                    
+                    includeCSS("styles.css"),
                     includeCSS("styles.css"),
                     tags$h1("The Inner Workings"),
                     tags$p("In this graph, the user is allowed to explore the various majors associated to each field. The are 
