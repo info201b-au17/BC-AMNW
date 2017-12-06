@@ -14,7 +14,7 @@ navbarPage("Data on Majors!",
                                     choices = selectGraph)
                       ),
                       mainPanel(
-                        plotOutput("plot1")
+                        plotOutput("plot1", click = "plot_click"), verbatimTextOutput("info")
                       )
                     ),
                     
