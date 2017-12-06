@@ -32,8 +32,6 @@ getAllMajors <- function() {
     return(data$Major)
 }
 
-
-
 #filters data by category
 category.data <- function(category) {
   category_data <- filter(data, Major_category == category)
