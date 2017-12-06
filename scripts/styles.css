@@ -1,21 +1,21 @@
 h1 {
   text-align: center;
-  color: lightblue;
-  font-size: 50px;
+  color: magenta;
+  font-size: 60px;
   font-weight: 900;
   font-style: italic;
 }
 
 h2 {
   text-align: center;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 600;
 }
 
 p {
   text-align: center;
-  color: yellowgreen;
-  font-size: 20px;
+  color: orange;
+  font-size: 30px;
 }
 
 .shiny-output-error {
@@ -25,3 +25,8 @@ p {
 .shiny-output-error:before {
   visibility: hidden; 
 }
+
+body {
+  background-color: lightblue;
+}
+
