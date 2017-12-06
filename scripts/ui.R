@@ -14,7 +14,7 @@ navbarPage("Data on Majors!",
                                     choices = selectGraph)
                       ),
                       mainPanel(
-                        plotOutput("plot1", height = 700)
+                        plotOutput("plot1", height = 700, click = "plot_click"), verbatimTextOutput("info")
                       )
                     ),
                     
@@ -44,7 +44,7 @@ navbarPage("Data on Majors!",
                     fluidPage(
                       titlePanel("Choose your Majors"),
                       fluidRow(
-                        
+                     
                           # This outputs the dynamic UI component
                           uiOutput("boxes")
                         

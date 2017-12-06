@@ -24,15 +24,13 @@ MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Re
                    "Physical Sciences" = "Physical Sciences",
                    "Psychology & Social Work" = "Psychology & Social Work")
 
-selectGraph <- c("Average Pay" = "Median",
+selectGraph <- c("Median Pay" = "Median",
                  "Unemployment Rate" = "Unemployment_rate")
 
 
 getAllMajors <- function() {
     return(data$Major)
 }
-
-
 
 #filters data by category
 category.data <- function(category) {
@@ -48,21 +46,16 @@ multipleCategoryData <- function(categories) {
     return(result)
 }
 
-#function for finding average salary or unemployment rate of a given category of majors
-#returns dataframe with category and average pay or unemployment rate
-major.category <- function(category, data.type) {
+#function for finding average salary and unemployment rate of a given category of majors
+#returns dataframe with category and average pay and unemployment rate
+major.category <- function(category) {
   category.data <- category.data(category)
-  if(data.type == "Average Pay") {
-    data.type <- mean(category.data$Median)
-    category.summary <- data.frame(category = rep("", 1), average.pay = rep(NA, 1), stringsAsFactors = FALSE)
-  } else {
-    data.type <- mean(category.data$Unemployment_rate)
-    category.summary <- data.frame(category = rep("", 1), unemployment.rate = rep(NA, 1), stringsAsFactors = FALSE)
-  }
-  category.summary[1, ] <- list(category, data.type)
+  data.pay <- mean(category.data$Median)
+  data.unrate <- mean(category.data$Unemployment_rate)
+  category.summary <- data.frame(category = rep("", 1), unemployment.rate = rep(NA, 1),average.pay = rep(NA, 1), stringsAsFactors = FALSE)
+  category.summary[1, ] <- list(category, data.pay, data.unrate)
   return(category.summary)
 }
-
 
 
 # Takes in a vector of major names, returns a data frame containing just those majors.
@@ -102,4 +95,5 @@ return(all.categories)
 }
 
 
-
+agg.majors.pay.unrate <- data.frame(average.pay = mean(data$Median), average.unemployment.rate = 
+                                      mean(data$Unemployment_rate))
