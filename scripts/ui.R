@@ -16,7 +16,7 @@ navbarPage("Major Category VS Stuff!",
                       )
                     )
            ),
-           tabPanel("Summary",
+           tabPanel("Comparison",
                     verbatimTextOutput("summary")
            )
 )

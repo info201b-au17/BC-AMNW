@@ -13,7 +13,7 @@ source("scripts/common.R")
 # This function takes in a list of majors that a user may be interested in then returns a graph of median pay 
 # for those majors
 GetPayByMajors <- function(majors) {
-  return(graphMajorsPay(data, majors))
+  return(filterByMajorName(data, majors) %>% graphCategory("Median", "Median Pay"))
 }
 
 # Stub data to test with

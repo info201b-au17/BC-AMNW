@@ -15,7 +15,7 @@ function(input, output, session) {
 
     plot1 <- ggplot(dataSet, aes(x=dataSet[,1], y=dataSet[,2])) + 
       geom_histogram(stat = "identity", fill = "Red") + labs(title = "", y = input$Type, x = input$Categories) + 
-      theme(axis.text.x = element_text(angle = 90, hjust = 1))
+      theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
     plot(plot1)
   })

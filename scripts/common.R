@@ -1,6 +1,6 @@
 library(dplyr)
 library(ggplot2)
-data <- read.csv("../data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
+data <- read.csv("./data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
 
 
 MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Resources",
@@ -64,7 +64,7 @@ filterByMajorName <- function(data, majors) {
 # Example Call: graphMajorsPay(data, list)
 graphMajorsPay <- function(data, majors) {
 
-  getFilteredData <- filterByMajorName(data, majors)
+  getFilteredData <- filterByMajorN:ame(data, majors)
   
   graph <- ggplot(getFilteredData, aes(x=getFilteredData[, "Major"], y=getFilteredData[, "Median"])) + geom_col(aes(fill = Median))
   graph <- graph + labs(title = "Median Pay of Majors", y = "Median", x = "Majors") + scale_x_discrete( labels = 
