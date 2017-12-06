@@ -7,6 +7,7 @@ library(scales)
 source("common.R")
 function(input, output, session) {
   
+  
   output$plot1 <- renderPlot({
     
     filterData <- category.data(input$Categories)
