@@ -58,8 +58,6 @@ major.category <- function(category) {
 }
 
 
-
-
 # Takes in a vector of major names, returns a data frame containing just those majors.
 filterByMajorName <- function(data, majors) {
   filteredData <- data.frame()
