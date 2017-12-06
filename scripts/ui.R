@@ -13,7 +13,7 @@ navbarPage("Major Category VS Stuff!",
                                     choices = selectGraph)
                       ),
                       mainPanel(
-                        plotOutput("plot1")
+                        plotOutput("plot1", click = "plot_click"), verbatimTextOutput("info")
                       )
                     )
            ),
