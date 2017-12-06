@@ -7,6 +7,7 @@ getCheckedData <- function() {
     return(checkedData)
 }
 
+# List of all Major Categories
 MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Resources",
                    "Arts" = "Arts",
                    "Biology & Life Science" = "Biology & Life Science",
@@ -27,7 +28,7 @@ MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Re
 selectGraph <- c("Median Pay" = "Median",
                  "Unemployment Rate" = "Unemployment_rate")
 
-
+# Returns a list of all majors.
 getAllMajors <- function() {
     return(data$Major)
 }
@@ -38,6 +39,7 @@ category.data <- function(category) {
   return(category_data)
 }
 
+# Gets data for multiple categories
 multipleCategoryData <- function(categories) {
     result <- data.frame()
     for(category in categories) {
@@ -82,16 +84,16 @@ graphCategory <- function(data, category, categoryLabel) {
 
 #function that creates a data frame of all major categories and its respective average pay and average unemployment rate.
 agg.categories <- function() {
-all.categories <- data.frame(category = rep(NA,16), average.pay = rep(NA,16), average.unemployment.rate =rep("",16),
-                             stringsAsFactors = FALSE)
-for( i in 1:16) {
-  category <- MajorCategory[i]
-  c.data <- category.data(category)
-  mean.pay <- mean(c.data$Median)
-  mean.unemployment <- mean(c.data$Unemployment_rate)
-  all.categories[i, ] <- list(category, mean.pay, mean.unemployment) 
-}
-return(all.categories)
+    all.categories <- data.frame(category = rep(NA,16), average.pay = rep(NA,16), average.unemployment.rate =rep("",16),
+                                 stringsAsFactors = FALSE)
+    for( i in 1:16) {
+      category <- MajorCategory[i]
+      c.data <- category.data(category)
+      mean.pay <- mean(c.data$Median)
+      mean.unemployment <- mean(c.data$Unemployment_rate)
+      all.categories[i, ] <- list(category, mean.pay, mean.unemployment) 
+    }
+    return(all.categories)
 }
 
 

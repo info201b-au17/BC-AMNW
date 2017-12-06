@@ -4,6 +4,7 @@ source("common.R")
 
 
 navbarPage("Data on Majors!",
+           # The panel in which a user can choose a category of majors and graph type.
            tabPanel("Plot",
                     sidebarLayout(
                       sidebarPanel(
@@ -31,6 +32,7 @@ navbarPage("Data on Majors!",
                     tags$p("1. Choose a Field of Study"),
                     tags$p("2. Choose a Graph Type (Unemployment vs Median Pay)")
            ),
+           #The panel in which a user can pick a list of majors and graph type to view.
            tabPanel("Comparsion",
                     sidebarPanel(
                       selectInput("TypeTwo", label = h3("Graph Type:"),

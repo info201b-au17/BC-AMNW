@@ -7,7 +7,7 @@ library(scales)
 source("common.R")
 function(input, output, session) {
   
-  
+  # Plots the pay or unemployment rate graphs for a specific category.
   output$plot1 <- renderPlot({
     
     filterData <- category.data(input$Categories)
@@ -44,15 +44,16 @@ function(input, output, session) {
     )
   })
 
+  # Plots the pay/unemployment graph for a list of majors.
   output$plot2 <- renderPlot({
-      
       plot(graphCategory(filterByMajorName(data, input$Majors), input$TypeTwo, input$TypeTwo))
   })
   
   
-
+  # Creates the checkboxes for all the majors within a category.
   output$boxes <- renderUI({column(12, 
            checkboxGroupInput("Majors", label = NULL,
            choices = multipleCategoryData(input$CategoriesTwo)$Major,
-           selected = sample(multipleCategoryData(input$CategoriesTwo)$Major, 10, replace = TRUE)))})
+           selected = sample(multipleCategoryData(input$CategoriesTwo)$Major, 10, replace = TRUE)))
+      })
 }
