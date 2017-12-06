@@ -24,7 +24,7 @@ MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Re
                    "Physical Sciences" = "Physical Sciences",
                    "Psychology & Social Work" = "Psychology & Social Work")
 
-selectGraph <- c("Average Pay" = "Median",
+selectGraph <- c("Median Pay" = "Median",
                  "Unemployment Rate" = "Unemployment_rate")
 
 
