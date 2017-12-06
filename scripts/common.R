@@ -32,10 +32,20 @@ getAllMajors <- function() {
     return(data$Major)
 }
 
+
+
 #filters data by category
 category.data <- function(category) {
   category_data <- filter(data, Major_category == category)
   return(category_data)
+}
+
+multipleCategoryData <- function(categories) {
+    result <- data.frame()
+    for(category in categories) {
+        result <- rbind(result, category.data(category))
+    }
+    return(result)
 }
 
 #function for finding average salary or unemployment rate of a given category of majors

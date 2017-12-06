@@ -24,14 +24,14 @@ function(input, output, session) {
     
 
   output$plot2 <- renderPlot({
-      plot(graphCategory(filterByMajorName(data, c(input$A, input$B, input$C, input$D, input$E, input$F, input$G, input$H, input$I, input$J, input$K, input$L, input$M, input$N, input$O, input$P)), input$TypeTwo, input$TypeTwo))
+      
+      plot(graphCategory(filterByMajorName(data, input$Majors), input$TypeTwo, input$TypeTwo))
   })
   
   
-  output$Boxes <- renderUI({column(3, wellPanel(
-      checkboxGroupInput("P", label = h3(input$CategoriesTwo), 
-                         choices = category.data(input$CategoriesTwo)$Major)
-  ))})
+  output$boxes <- renderUI({column(3, wellPanel(
+           checkboxGroupInput("Majors", label = h3("Majors"), 
+           choices = multipleCategoryData(input$CategoriesTwo)$Major)))})
 }
 
 

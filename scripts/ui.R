@@ -28,6 +28,6 @@ navbarPage("Major Category VS Stuff!",
                     mainPanel(
                         plotOutput("plot2")
                     ),
-                    uiOutput("Boxes")
+                    uiOutput("boxes")
            )
 )
