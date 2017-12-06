@@ -43,12 +43,14 @@ navbarPage("Data on Majors!",
                     ),
                     fluidPage(
                       titlePanel("Choose your Majors"),
-                      fluidRow(
-                        column(3, wellPanel(
+                      tags$div(class="container",
+                      tags$div(class="row",
+                        column(8,
                           # This outputs the dynamic UI component
                           uiOutput("boxes")
-                        ))
+                        )
                       )
+                    )
                     ),
                     tags$hr(),
                     
