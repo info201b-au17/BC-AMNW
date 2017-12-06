@@ -13,11 +13,13 @@ function(input, output, session) {
     filterData <- category.data(input$Categories)
     dataSet <- filterData[, c("Major", input$Type)]
     if(input$Type == "Median") {
-      data.type <- "Median Pay"
+      data.type <- "Median Pay ($)"
+      y.data <- dataSet[,2]
     } else {
-      data.type <- "Unemployment Rate"
+      data.type <- "Unemployment Rate (%)"
+      y.data <- dataSet[,2]*100
     }
-    plot1 <- ggplot(dataSet, aes(x=dataSet[,1], y=dataSet[,2])) + 
+    plot1 <- ggplot(dataSet, aes(x=dataSet[,1], y= y.data)) + 
 
       geom_histogram(stat = "identity", fill = sample(rainbow(100), 1)) + labs(title = paste0(input$Categories, " Majors ", data.type), y = data.type, x = input$Categories) + 
       theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 15),
