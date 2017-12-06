@@ -15,7 +15,7 @@ function(input, output, session) {
     dataSet <- filterData[, c("Major", input$Type)]
 
     plot1 <- ggplot(dataSet, aes(x=dataSet[,1], y=dataSet[,2])) + 
-      geom_histogram(stat = "identity", fill = "Red") + labs(title = "", y = input$Type, x = input$Categories) + 
+      geom_histogram(stat = "identity", fill = sample(rainbow(100), 1)) + labs(title = "", y = input$Type, x = input$Categories) + 
       theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
     
     plot(plot1)
