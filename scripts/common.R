@@ -72,7 +72,7 @@ filterByMajorName <- function(data, majors) {
 graphCategory <- function(data, category, categoryLabel) {
   data["Unemployment_rate"] <- data["Unemployment_rate"] * 100
   result <- ggplot(data, aes(Major, get(category))) + geom_col(aes(fill = Major_category))
-  result <- result + labs(x = "Major", y = categoryLabel, fill = "Category") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 15),
+  result <- result + labs(x = "Major", y = gsub("_", " ", categoryLabel), fill = "Category") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 15),
                                                                                      axis.text.y = element_text(size = 15), plot.margin = unit(c(1,1,1,5), "cm"),
                                                                                      axis.title.x = element_text(size = 20),
                                                                                      axis.title.y = element_text(size = 20))
