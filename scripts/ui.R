@@ -1,5 +1,6 @@
 library(shiny)
 library(rsconnect)
+source("common.R")
 
 navbarPage("Major Category VS Stuff!",
            tabPanel("Plot",
@@ -18,26 +19,15 @@ navbarPage("Major Category VS Stuff!",
            ),
 
            tabPanel("Comparsion",
-                    fluidPage(
-                      titlePanel("Dynamically generated user interface components"),
-                      fluidRow(
-                        
-                        column(3, wellPanel(
-                          checkboxGroupInput("checkGroup", label = h3("Checkbox group"), 
-                                             choices = MajorCategory)
-                        )),
-                        column(3, wellPanel(
-                          checkboxGroupInput("subchoices", label = h3("Checkboxes"), 
-                                             choices = "hi")
-                        )),
-                        
-                        column(3, wellPanel(
-                          # This outputs the dynamic UI component
-                          uiOutput("ui")
-                        ))
-                      )
-                    )
-                    
-
+                    sidebarPanel(
+                        checkboxGroupInput("CategoriesTwo", label = h3("Major Category:"),
+                                    choices = MajorCategory),
+                        selectInput("TypeTwo", label = h3("Graph Type:"),
+                                    choices = selectGraph)
+                    ),
+                    mainPanel(
+                        plotOutput("plot2")
+                    ),
+                    uiOutput("Boxes")
            )
 )

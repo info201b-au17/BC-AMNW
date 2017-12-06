@@ -1,9 +1,11 @@
 library(dplyr)
 library(ggplot2)
 
-data <- read.csv("data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
-
-
+data <- read.csv("../data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
+checkedData <- c("Testing")
+getCheckedData <- function() {
+    return(checkedData)
+}
 
 MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Resources",
                    "Arts" = "Arts",
@@ -26,7 +28,9 @@ selectGraph <- c("Average Pay" = "Median",
                  "Unemployment Rate" = "Unemployment_rate")
 
 
-
+getAllMajors <- function() {
+    return(data$Major)
+}
 
 #filters data by category
 category.data <- function(category) {

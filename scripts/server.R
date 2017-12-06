@@ -20,22 +20,18 @@ function(input, output, session) {
       theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
     
     plot(plot1)
-    
-    
-    ### break
-
-    output$ui <- renderPrint({
-      print(input$checkGroup)
-      for(box in input$checkGroup) {
-        checkboxData <- data %>% filter(Major_category == box)
-        for(row in checkboxData) {
-          subchoices = c(subchoices, row)
-        }
-      }
-
-    })
-    
   })
+    
+
+  output$plot2 <- renderPlot({
+      plot(graphCategory(filterByMajorName(data, c(input$A, input$B, input$C, input$D, input$E, input$F, input$G, input$H, input$I, input$J, input$K, input$L, input$M, input$N, input$O, input$P)), input$TypeTwo, input$TypeTwo))
+  })
+  
+  
+  output$Boxes <- renderUI({column(3, wellPanel(
+      checkboxGroupInput("P", label = h3(input$CategoriesTwo), 
+                         choices = category.data(input$CategoriesTwo)$Major)
+  ))})
 }
 
 
