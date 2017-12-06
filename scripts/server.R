@@ -9,7 +9,6 @@ data <- read.csv("../data/college-majors/all-ages.csv")
 
 function(input, output, session) {
   
-  
   output$plot1 <- renderPlot({
     filterData <- data %>% filter(Major_category == input$Categories)
     dataSet <- filterData[, c("Major", input$Type)]
