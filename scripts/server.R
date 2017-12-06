@@ -14,7 +14,7 @@ function(input, output, session) {
     filterData <- category.data(input$Categories)
     dataSet <- filterData[, c("Major", input$Type)]
     if(input$Type == "Median") {
-      data.type <- "Average Pay"
+      data.type <- "Median Pay"
     } else {
       data.type <- "Unemployment Rate"
     }
@@ -30,10 +30,10 @@ function(input, output, session) {
     xy_str <- function(e) {
       data.set <- major.category(input$Categories)
       if(is.null(e)) return("Click Graph for Category Averages")
-      paste0("\nAverage Pay = $", data.set[,2], 
+      paste0("\nMedian Pay = $", data.set[,2], 
              "\nAverage Unemployment Rate =", 
              data.set[,3]* 100, "%", "\n",
-             "Averages For ALL Categories :\nAverage Pay = $", 
+             "Averages For ALL Categories :\nMedian Pay = $", 
              agg.majors.pay.unrate$average.pay, "\nAverage Unemployment Rate =", 
              agg.majors.pay.unrate$average.unemployment.rate * 100, "%")
     }
