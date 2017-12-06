@@ -16,7 +16,26 @@ navbarPage("Major Category VS Stuff!",
                       )
                     )
            ),
-           tabPanel("Summary",
-                    verbatimTextOutput("summary")
+           tabPanel("Comparsion",
+                    fluidPage(
+                      titlePanel("Dynamically generated user interface components"),
+                      fluidRow(
+                        
+                        column(3, wellPanel(
+                          checkboxGroupInput("checkGroup", label = h3("Checkbox group"), 
+                                             choices = MajorCategory)
+                        )),
+                        column(3, wellPanel(
+                          checkboxGroupInput("subchoices", label = h3("Checkboxes"), 
+                                             choices = "hi")
+                        )),
+                        
+                        column(3, wellPanel(
+                          # This outputs the dynamic UI component
+                          uiOutput("ui")
+                        ))
+                      )
+                    )
+                    
            )
 )
