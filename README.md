@@ -1,7 +1,7 @@
 # BC-AMNW
+[Shiny Link](https://wbigelow.shinyapps.io/college_majors_investigation/)
 
-Github link:
-https://github.com/info201b-au17/BC-AMNW
+[Github link](https://github.com/info201b-au17/BC-AMNW)
 
 Project Description:
 We will be working with the dataset from FiveThirtyEight's blog regarding college majors. The data can be found at https://github.com/fivethirtyeight/data/blob/master/college-majors/all-ages.csv
