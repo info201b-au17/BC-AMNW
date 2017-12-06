@@ -7,16 +7,19 @@ library(scales)
 source("common.R")
 function(input, output, session) {
   
+  
   output$plot1 <- renderPlot({
     
     filterData <- category.data(input$Categories)
     dataSet <- filterData[, c("Major", input$Type)]
     if(input$Type == "Median") {
-      data.type <- "Average Pay"
+      data.type <- "Median Pay ($)"
+      y.data <- dataSet[,2]
     } else {
-      data.type <- "Unemployment Rate"
+      data.type <- "Unemployment Rate (%)"
+      y.data <- dataSet[,2]*100
     }
-    plot1 <- ggplot(dataSet, aes(x=dataSet[,1], y=dataSet[,2])) + 
+    plot1 <- ggplot(dataSet, aes(x=dataSet[,1], y= y.data)) + 
 
       geom_histogram(stat = "identity", fill = sample(rainbow(100), 1)) + labs(title = paste0(input$Categories, " Majors ", data.type), y = data.type, x = input$Categories) + 
       theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 15),
@@ -29,10 +32,10 @@ function(input, output, session) {
     xy_str <- function(e) {
       data.set <- major.category(input$Categories)
       if(is.null(e)) return("Click Graph for Category Averages")
-      paste0("\nAverage Pay = $", data.set[,2], 
+      paste0("\nMedian Pay = $", data.set[,2], 
              "\nAverage Unemployment Rate =", 
              data.set[,3]* 100, "%", "\n",
-             "Averages For ALL Categories :\nAverage Pay = $", 
+             "Averages For ALL Categories :\nMedian Pay = $", 
              agg.majors.pay.unrate$average.pay, "\nAverage Unemployment Rate =", 
              agg.majors.pay.unrate$average.unemployment.rate * 100, "%")
     }
@@ -47,6 +50,7 @@ function(input, output, session) {
   })
   
   
+
   output$boxes <- renderUI({column(12, 
            checkboxGroupInput("Majors", label = NULL,
            choices = multipleCategoryData(input$CategoriesTwo)$Major,
