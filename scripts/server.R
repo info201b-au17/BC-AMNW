@@ -31,7 +31,7 @@ function(input, output, session) {
   
   output$boxes <- renderUI({column(3, wellPanel(
            checkboxGroupInput("Majors", label = h3("Majors"), 
-           choices = multipleCategoryData(input$CategoriesTwo)$Major)))})
+           choices = multipleCategoryData(input$CategoriesTwo)$Major, selected = multipleCategoryData(input$CategoriesTwo)$Major)))})
 }
 
 

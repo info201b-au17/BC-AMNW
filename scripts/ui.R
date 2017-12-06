@@ -20,10 +20,10 @@ navbarPage("Major Category VS Stuff!",
 
            tabPanel("Comparsion",
                     sidebarPanel(
-                        checkboxGroupInput("CategoriesTwo", label = h3("Major Category:"),
-                                    choices = MajorCategory),
                         selectInput("TypeTwo", label = h3("Graph Type:"),
-                                    choices = selectGraph)
+                                    choices = selectGraph),
+                        checkboxGroupInput("CategoriesTwo", label = h3("Major Category:"),
+                                    choices = MajorCategory, selected = "Agriculture & Natural Resources")
                     ),
                     mainPanel(
                         plotOutput("plot2")
