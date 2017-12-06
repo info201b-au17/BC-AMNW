@@ -1,6 +1,6 @@
 library(dplyr)
 library(ggplot2)
-data <- read.csv("../data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
+data <- read.csv("data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
 
 
 MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Resources",
@@ -83,14 +83,7 @@ graphMajorsPay <- function(data, majors) {
 graphCategory <- function(data, category, categoryLabel) {
   data["Unemployment_rate"] <- data["Unemployment_rate"] * 100
   result <- ggplot(data, aes(Major, get(category))) + geom_col(aes(fill = Major_category))
-  result <- result + labs(x = "Major", y = categoryLabel, fill = "Category") + scale_x_discrete( labels = 
-                                                                                                   function(labels) {
-                                                                                                     fixedLabels <- c() 
-                                                                                                     for (l in 1:length(labels)) {
-                                                                                                       fixedLabels <- c(fixedLabels, paste0(ifelse(l %% 2 == 0, '', '\n'), labels[l]))
-                                                                                                     } 
-                                                                                                     return( fixedLabels )
-                                                                                                   })
+  result <- result + labs(x = "Major", y = categoryLabel, fill = "Category") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
   return(result)
 }
 
