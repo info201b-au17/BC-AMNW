@@ -1,9 +1,11 @@
 library(dplyr)
 library(ggplot2)
 
-data <- read.csv("data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
-
-
+data <- read.csv("../data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
+checkedData <- c("Testing")
+getCheckedData <- function() {
+    return(checkedData)
+}
 
 MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Resources",
                    "Arts" = "Arts",
@@ -26,12 +28,24 @@ selectGraph <- c("Average Pay" = "Median",
                  "Unemployment Rate" = "Unemployment_rate")
 
 
+getAllMajors <- function() {
+    return(data$Major)
+}
+
 
 
 #filters data by category
 category.data <- function(category) {
   category_data <- filter(data, Major_category == category)
   return(category_data)
+}
+
+multipleCategoryData <- function(categories) {
+    result <- data.frame()
+    for(category in categories) {
+        result <- rbind(result, category.data(category))
+    }
+    return(result)
 }
 
 #function for finding average salary or unemployment rate of a given category of majors
