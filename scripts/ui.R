@@ -42,12 +42,13 @@ navbarPage("Data on Majors!",
                       plotOutput("plot2", height = 700)
                     ),
                     fluidPage(
-                      titlePanel("Choose your Majors"),
-                      fluidRow(
-                     
-                          # This outputs the dynamic UI component
-                          uiOutput("boxes")
-                        
+                      
+                        titlePanel("Choose your Majors"),
+                        wellPanel(
+                          fluidRow(
+                              # This outputs the dynamic UI component
+                              tags$div(class = "multicol", align = "left", uiOutput("boxes"))
+                          )
                       )
                     ),
                     tags$hr(),

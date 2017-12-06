@@ -30,3 +30,7 @@ body {
   background-color: lightblue;
 }
 
+.multicol {
+  column-count: 5;
+}
+
