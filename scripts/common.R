@@ -1,6 +1,8 @@
 library(dplyr)
 library(ggplot2)
+
 data <- read.csv("data/college-majors/all-ages.csv", stringsAsFactors = FALSE)
+
 
 
 MajorCategory <- c("Agriculture & Natural Resources" = "Agriculture & Natural Resources",
@@ -57,7 +59,6 @@ filterByMajorName <- function(data, majors) {
   }
   return(filteredData)
 }
-
 
 # Takes in a dataframe, category AS STRING, and category label (y-axis label) AS STRING, returns a bar graph of Major vs. Category
 # Example call: graphCategory(data, "Median", Median Pay)

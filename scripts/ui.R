@@ -16,6 +16,7 @@ navbarPage("Major Category VS Stuff!",
                       )
                     )
            ),
+
            tabPanel("Comparsion",
                     fluidPage(
                       titlePanel("Dynamically generated user interface components"),
@@ -37,5 +38,6 @@ navbarPage("Major Category VS Stuff!",
                       )
                     )
                     
+
            )
 )
